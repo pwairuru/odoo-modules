@@ -448,3 +448,20 @@ class TestCompatProvider(AITestCommon):
             provider._extra_headers()['HTTP-Referer'],
             'https://github.com/pwairuru/odoo-modules',
         )
+
+    def test_the_shipped_presets_point_at_their_endpoints(self):
+        for xmlid, url in (
+            ('muk_ai_compat.provider_openrouter', 'https://openrouter.ai/api/v1'),
+            ('muk_ai_compat.provider_opencode', 'https://opencode.ai/zen/go/v1'),
+            ('muk_ai_compat.provider_deepinfra', 'https://api.deepinfra.com/v1/openai'),
+            ('muk_ai_compat.provider_siliconflow', 'https://api.siliconflow.com/v1'),
+        ):
+            with self.subTest(preset=xmlid):
+                provider = self.env.ref(xmlid)
+                self.assertEqual(provider.api_region, 'custom')
+                self.assertEqual(provider.api_url, url)
+                self.assertTrue(provider.active)
+        self.assertEqual(
+            self.env.ref('muk_ai_compat.provider_opencode')._extra_headers(),
+            {'x-opencode-session': 'odoo'},
+        )

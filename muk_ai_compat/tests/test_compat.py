@@ -175,6 +175,7 @@ COMPAT_EFFORTS = [
 class TestCompatProviders(TestProviders):
     """Verify the Chat Completions wire honours the provider contract."""
 
+    allow_inherited_tests_method = True
     cases = {'openai_compat': COMPAT_CASE}
     attachments = COMPAT_ATTACHMENTS
     efforts = COMPAT_EFFORTS

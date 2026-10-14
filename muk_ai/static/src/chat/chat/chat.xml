@@ -15,7 +15,7 @@
                 <SessionStatus t-if="session" session="session"/>
                 <span class="mk_main_title text-truncate fw-medium min-w-0">
                     <t t-if="session?.data.name" t-out="session.data.name"/>
-                    <t t-else="">MuK AI Chat</t>
+                    <t t-else="">AI Assistant Chat</t>
                 </span>
                 <t t-if="session">
                     <Dropdown disabled="session.readonly or !this.chat.agents().length">

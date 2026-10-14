@@ -32,7 +32,7 @@ import { SessionStatus } from '@muk_ai/chat/status/status';
 export class AIChat extends Component {
     static template = 'muk_ai.Chat';
     static path = 'ai-chat';
-    static displayName = _t('MuK AI Chat');
+    static displayName = _t('AI Assistant Chat');
     static components = {
         ArtifactsPanel,
         ChatConversation,

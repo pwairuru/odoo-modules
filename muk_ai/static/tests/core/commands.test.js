@@ -37,7 +37,7 @@ test('the # palette searches the chats, opens one and starts one named by the se
     await searchChats();
     expect('.o_command_palette_search input').toHaveAttribute(
         'placeholder',
-        'Search MuK AI chats...',
+        'Search AI Assistant chats...',
     );
     expect(queryAllTexts('.o_command_name')).toEqual([
         'New Chat',

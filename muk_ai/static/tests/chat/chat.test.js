@@ -104,7 +104,7 @@ test('a record the chat opens docks the chat and keeps the page in the breadcrum
     expect(getService(AIChatPlugin).windowIds).toEqual([1]);
     expect(
         queryAllTexts('.o_breadcrumb .breadcrumb-item, .o_breadcrumb .active'),
-    ).toEqual(['MuK AI Chat', 'Acme']);
+    ).toEqual(['AI Assistant Chat', 'Acme']);
 });
 
 test.tags('desktop');

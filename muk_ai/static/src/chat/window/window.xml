@@ -11,7 +11,7 @@
                 <SessionStatus t-if="session" session="session"/>
                 <span class="mk_window_title text-truncate flex-grow-1 min-w-0 fw-medium">
                     <t t-if="session?.data.name" t-out="session.data.name"/>
-                    <t t-else="">MuK AI</t>
+                    <t t-else="">AI Assistant</t>
                 </span>
                 <span class="mk_window_actions d-inline-flex gap-1 ms-1">
                     <span class="mk_window_btn d-inline-flex align-items-center justify-content-center rounded-3" title="Open fullscreen" t-on-click.stop="() => this.openFullChat()">

@@ -3,7 +3,7 @@
 
     <t t-name="muk_ai.Systray">
         <Dropdown position="'bottom-end'" menuClass="'mk_systray_menu'">
-            <button class="mk_systray_btn btn btn-link d-inline-flex align-items-center justify-content-center position-relative h-100 lh-1" title="MuK AI" t-ref="this.button">
+            <button class="mk_systray_btn btn btn-link d-inline-flex align-items-center justify-content-center position-relative h-100 lh-1" title="AI Assistant" t-ref="this.button">
                 <span class="mk_systray_icon_wrap position-relative d-inline-flex">
                     <span class="mk_icon_ai align-top"/>
                     <span t-if="this.running" class="mk_systray_running rounded-circle position-absolute pe-none"/>
@@ -16,7 +16,7 @@
             </button>
             <t t-set-slot="content">
                 <div class="mk_systray_header d-flex align-items-center justify-content-between gap-2 border-bottom">
-                    <span class="fw-semibold d-flex align-items-center gap-2"><span class="mk_icon_ai text-primary fs-6"/>MuK AI</span>
+                    <span class="fw-semibold d-flex align-items-center gap-2"><span class="mk_icon_ai text-primary fs-6"/>AI Assistant</span>
                     <small t-if="this.running" class="text-muted"><t t-out="this.running"/> running</small>
                 </div>
                 <DropdownItem class="'mk_systray_item d-flex align-items-center gap-2'" onSelected="() => this.newChat()">

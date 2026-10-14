@@ -63,15 +63,27 @@ class AIProvider(models.Model):
             )
             response.raise_for_status()
         except requests.HTTPError as error:
-            client._raise(error.response.text or error)
+            client._raise(client._error_details(error))
         except requests.RequestException as error:
             client._raise(error)
         try:
-            entries = response.json().get('data')
-        except ValueError as error:
-            client._raise(error)
+            payload = response.json()
+        except ValueError:
+            client._raise(
+                self.env._(
+                    'endpoint did not return JSON - check the Custom URL: it '
+                    'must be the API base URL (usually ending in /v1), not a '
+                    'web page.'
+                )
+            )
+        entries = payload.get('data') if isinstance(payload, dict) else None
         if not isinstance(entries, list):
-            client._raise(self.env._('endpoint returned no model list'))
+            client._raise(
+                self.env._(
+                    'endpoint returned no model list - check the Custom URL: '
+                    'it must be the API base URL (usually ending in /v1).'
+                )
+            )
         return [entry for entry in entries if isinstance(entry, dict)]
 
     # ----------------------------------------------------------

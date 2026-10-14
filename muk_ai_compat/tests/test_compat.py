@@ -63,6 +63,18 @@ def call_chunk(
     return part
 
 
+def html_response(status_code: int = 404) -> requests.Response:
+    """Build an HTTP response carrying an HTML error page, like a website does."""
+    response = requests.Response()
+    response.status_code = status_code
+    response._content = (
+        b'<!DOCTYPE html><html><head></head><body>not found</body></html>'
+    )
+    response.headers['Content-Type'] = 'text/html'
+    response.url = 'https://provider.test/'
+    return response
+
+
 def _compat_wire(url: str, body: dict) -> dict:
     """Normalise a Chat Completions request body."""
     tools = body.get('tools') or []
@@ -400,6 +412,34 @@ class TestCompatProvider(AITestCommon):
             self.assertRaisesRegex(UserError, 'no model list'),
         ):
             provider.action_fetch_models()
+
+    def test_an_html_error_page_points_at_the_custom_url(self):
+        provider = self._provider()
+        with (
+            self._capture_post(html_response()),
+            self.assertRaisesRegex(UserError, 'HTML.*Custom URL'),
+        ):
+            provider._request_responses(inputs=[USER])
+
+    def test_an_html_model_list_points_at_the_custom_url(self):
+        provider = self._provider()
+        with (
+            patch.object(
+                requests.Session, 'get', return_value=html_response(200)
+            ),
+            self.assertRaisesRegex(UserError, 'JSON.*Custom URL'),
+        ):
+            provider.action_fetch_models()
+
+    def test_a_trailing_slash_custom_url_posts_a_single_slash(self):
+        provider = self._provider(api_url='https://provider.test/')
+        with self._capture_post(
+            sse_response(list(COMPAT_CASE.text)),
+        ) as captured:
+            provider._request_responses(inputs=[USER])
+        self.assertEqual(
+            captured[0][0], 'https://provider.test/chat/completions'
+        )
 
     def test_the_shipped_openrouter_account_points_at_openrouter(self):
         provider = self.env.ref('muk_ai_compat.provider_openrouter')

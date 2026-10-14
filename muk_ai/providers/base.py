@@ -204,7 +204,7 @@ class ProviderBase:
         """
         try:
             response = self._http_session().post(
-                f'{self.api_url}{path}',
+                f'{self.api_url.rstrip("/")}{path}',
                 headers=self.headers(),
                 json=body,
                 timeout=timeout,
@@ -212,7 +212,7 @@ class ProviderBase:
             )
             response.raise_for_status()
         except requests.HTTPError as error:
-            self._raise(error.response.text or error)
+            self._raise(self._error_details(error))
         except requests.RequestException as error:
             self._raise(error)
         return response
@@ -561,6 +561,24 @@ class ProviderBase:
         if code := next(filter(None, map(error.get, code_keys)), None):
             message = f'{message} (code: {code})'
         self._raise(message)
+
+    def _error_details(self, error: requests.HTTPError) -> str:
+        """Describe an HTTP error, hinting at the Custom URL on HTML pages.
+
+        Vendors answer errors as JSON; an HTML page means the base URL points
+        at a website rather than the API.
+        """
+        response = error.response
+        status = response.status_code if response is not None else '?'
+        body = (response.text or '').strip() if response is not None else ''
+        if body.startswith('<'):
+            return self.env._(
+                'endpoint returned an HTML page (HTTP %(status)s) instead of '
+                'JSON - check the Custom URL: it must be the API base URL '
+                '(usually ending in /v1), not a web page.',
+                status=status,
+            )
+        return f'HTTP {status}: {body or error}'
 
     def _raise(self, error) -> None:
         """Wrap a provider error into a user-facing :class:`UserError`.

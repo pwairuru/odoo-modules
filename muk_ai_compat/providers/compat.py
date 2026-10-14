@@ -36,6 +36,11 @@ class OpenAICompatProvider(ProviderBase):
         """Return ``True`` even without a key: local endpoints need none."""
         return True
 
+    @property
+    def api_url(self) -> str:
+        """Return the custom base URL without a trailing slash."""
+        return super().api_url.rstrip('/')
+
     # ----------------------------------------------------------
     # Functions
     # ----------------------------------------------------------

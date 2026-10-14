@@ -4,7 +4,7 @@
 
 	<menuitem
 		id="menu_ai_root"
-		name="MuK AI"
+		name="AI Assistant"
 		sequence="100"
 		web_icon="muk_ai,static/description/icon.png"
 		groups="base.group_user"

@@ -1,5 +1,5 @@
 {
-    'name': 'MuK AI Assistant',
+    'name': 'AI Assistant',
     'summary': 'Native agentic AI (ChatGPT, Claude, Gemini) agent and chat',
     'description': """
         A complete agentic AI assistant inside Odoo. Ships a native OWL
@@ -10,7 +10,7 @@
         muk_mcp tool registry your external AI clients use - one source
         of truth, one permission model, one audit trail.
     """,
-    'version': '20.0.1.25.3',
+    'version': '20.0.1.26.0',
     'category': 'Productivity',
     'license': 'LGPL-3',
     'author': 'MuK IT',

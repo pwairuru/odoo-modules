@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo noupdate="1">
+
+	<record id="provider_openai_compat" model="muk_ai.provider">
+		<field name="name">openai_compat</field>
+		<field name="sequence">40</field>
+		<field name="api_region">custom</field>
+		<field name="api_url">https://api.openai.com/v1</field>
+		<field name="active" eval="False"/>
+	</record>
+
+	<record id="provider_openrouter" model="muk_ai.provider">
+		<field name="name">openai_compat</field>
+		<field name="code">openrouter</field>
+		<field name="sequence">41</field>
+		<field name="api_region">custom</field>
+		<field name="api_url">https://openrouter.ai/api/v1</field>
+		<field name="api_headers">{"HTTP-Referer": "https://github.com/pwairuru/odoo-modules", "X-Title": "AI Assistant"}</field>
+	</record>
+
+</odoo>

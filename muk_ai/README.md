@@ -1,4 +1,4 @@
-# MuK AI Assistant
+# AI Assistant
 
 [![Odoo 20.0](https://img.shields.io/badge/Odoo-20.0-714B67?style=flat-square)](https://apps.odoo.com/apps/modules/muk_ai)
 ![Community](https://img.shields.io/badge/CE-%E2%9C%93-1C3A4C?style=flat-square)
@@ -37,15 +37,15 @@ it changes the records you protect.
 
 ## Getting started
 
-1. Install **MuK AI Assistant** from **Apps**.
-2. Open **MuK AI > Configuration > Providers**, pick OpenAI, Anthropic or
+1. Install **AI Assistant** from **Apps**.
+2. Open **AI Assistant > Configuration > Providers**, pick OpenAI, Anthropic or
    Google, paste the API key and click **Test Connection**.
 3. Set the default provider, the default agent and the limits under
-   **MuK AI > Settings**.
-4. Shape the agents under **MuK AI > Agents**, and mark the models an agent
+   **AI Assistant > Settings**.
+4. Shape the agents under **AI Assistant > Agents**, and mark the models an agent
    has to ask about with **Sensitive for AI** under
    **Settings > Technical > Database Structure > Models**.
-5. Open **MuK AI > Chat**, or the robot in the top bar on any screen, and ask.
+5. Open **AI Assistant > Chat**, or the robot in the top bar on any screen, and ask.
 
 ## Extending
 

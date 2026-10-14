@@ -8,7 +8,7 @@
 		<field name="inherit_id" ref="base.res_config_settings_view_form"/>
 		<field name="arch" type="xml">
 			<xpath expr="//form" position="inside">
-				<app data-string="MuK AI" string="MuK AI" name="muk_ai">
+				<app data-string="AI Assistant" string="AI Assistant" name="muk_ai">
 					<block title="Defaults" name="muk_ai_settings_defaults">
 						<setting
 							id="ai_default_provider"

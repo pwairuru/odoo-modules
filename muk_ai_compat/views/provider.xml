@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+
+	<record id="view_muk_ai_provider_form" model="ir.ui.view">
+		<field name="name">muk_ai.provider.form.muk_ai_compat</field>
+		<field name="model">muk_ai.provider</field>
+		<field name="inherit_id" ref="muk_ai.view_muk_ai_provider_form"/>
+		<field name="arch" type="xml">
+			<xpath expr="//button[@name='action_test_connection']" position="after">
+				<button
+					name="action_fetch_models"
+					type="object"
+					string="Fetch Models"
+					class="btn-secondary"
+					invisible="name != 'openai_compat'"
+				/>
+				<button
+					name="action_fetch_models"
+					type="object"
+					string="Refresh Models"
+					context="{'fetch_replace': True}"
+					help="Fetch the catalogue and archive the models the endpoint no longer lists."
+					class="btn-secondary"
+					invisible="name != 'openai_compat'"
+				/>
+			</xpath>
+			<xpath expr="//field[@name='api_url']" position="after">
+				<field
+					name="api_headers"
+					invisible="name != 'openai_compat'"
+					placeholder="{&#10;&quot;HTTP-Referer&quot;: &quot;https://example.com&quot;,&#10;&quot;X-Title&quot;: &quot;AI Assistant&quot;&#10;}"
+				/>
+			</xpath>
+		</field>
+	</record>
+
+</odoo>

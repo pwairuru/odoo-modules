@@ -255,3 +255,31 @@ class OpenAICompatProvider(ProviderBase):
             truncated,
             self.provider.max_tokens or None,
         )
+
+
+class OpenRouterProvider(OpenAICompatProvider):
+    """OpenRouter gateway on the OpenAI-compatible wire."""
+
+    name = 'openrouter'
+    label = 'OpenRouter'
+
+
+class OpencodeProvider(OpenAICompatProvider):
+    """opencode gateway on the OpenAI-compatible wire."""
+
+    name = 'opencode'
+    label = 'opencode'
+
+
+class DeepInfraProvider(OpenAICompatProvider):
+    """DeepInfra serverless inference on the OpenAI-compatible wire."""
+
+    name = 'deepinfra'
+    label = 'DeepInfra'
+
+
+class SiliconFlowProvider(OpenAICompatProvider):
+    """SiliconFlow inference on the OpenAI-compatible wire."""
+
+    name = 'siliconflow'
+    label = 'SiliconFlow'

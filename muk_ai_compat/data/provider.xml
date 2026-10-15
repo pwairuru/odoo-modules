@@ -11,8 +11,7 @@
 	</record>
 
 	<record id="provider_openrouter" model="muk_ai.provider">
-		<field name="name">openai_compat</field>
-		<field name="code">openrouter</field>
+		<field name="name">openrouter</field>
 		<field name="sequence">41</field>
 		<field name="api_region">custom</field>
 		<field name="api_url">https://openrouter.ai/api/v1</field>
@@ -20,8 +19,7 @@
 	</record>
 
 	<record id="provider_opencode" model="muk_ai.provider">
-		<field name="name">openai_compat</field>
-		<field name="code">opencode</field>
+		<field name="name">opencode</field>
 		<field name="sequence">42</field>
 		<field name="api_region">custom</field>
 		<field name="api_url">https://opencode.ai/zen/go/v1</field>
@@ -29,16 +27,14 @@
 	</record>
 
 	<record id="provider_deepinfra" model="muk_ai.provider">
-		<field name="name">openai_compat</field>
-		<field name="code">deepinfra</field>
+		<field name="name">deepinfra</field>
 		<field name="sequence">43</field>
 		<field name="api_region">custom</field>
 		<field name="api_url">https://api.deepinfra.com/v1/openai</field>
 	</record>
 
 	<record id="provider_siliconflow" model="muk_ai.provider">
-		<field name="name">openai_compat</field>
-		<field name="code">siliconflow</field>
+		<field name="name">siliconflow</field>
 		<field name="sequence">44</field>
 		<field name="api_region">custom</field>
 		<field name="api_url">https://api.siliconflow.com/v1</field>

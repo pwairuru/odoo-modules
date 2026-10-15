@@ -450,18 +450,39 @@ class TestCompatProvider(AITestCommon):
         )
 
     def test_the_shipped_presets_point_at_their_endpoints(self):
-        for xmlid, url in (
-            ('muk_ai_compat.provider_openrouter', 'https://openrouter.ai/api/v1'),
-            ('muk_ai_compat.provider_opencode', 'https://opencode.ai/zen/go/v1'),
-            ('muk_ai_compat.provider_deepinfra', 'https://api.deepinfra.com/v1/openai'),
-            ('muk_ai_compat.provider_siliconflow', 'https://api.siliconflow.com/v1'),
+        for xmlid, url, label in (
+            ('muk_ai_compat.provider_openrouter', 'https://openrouter.ai/api/v1', 'OpenRouter'),
+            ('muk_ai_compat.provider_opencode', 'https://opencode.ai/zen/go/v1', 'opencode'),
+            ('muk_ai_compat.provider_deepinfra', 'https://api.deepinfra.com/v1/openai', 'DeepInfra'),
+            ('muk_ai_compat.provider_siliconflow', 'https://api.siliconflow.com/v1', 'SiliconFlow'),
         ):
             with self.subTest(preset=xmlid):
                 provider = self.env.ref(xmlid)
                 self.assertEqual(provider.api_region, 'custom')
                 self.assertEqual(provider.api_url, url)
                 self.assertTrue(provider.active)
+                self.assertEqual(provider.display_name, label)
         self.assertEqual(
             self.env.ref('muk_ai_compat.provider_opencode')._extra_headers(),
             {'x-opencode-session': 'odoo'},
         )
+
+    def test_fetch_models_works_on_the_named_preset_types(self):
+        for name in ('openrouter', 'opencode', 'deepinfra', 'siliconflow'):
+            with self.subTest(provider=name):
+                provider = self._provider(name=name, code='test')
+                with patch.object(
+                    requests.Session,
+                    'get',
+                    return_value=json_response({'data': [{'id': 'm1'}]}),
+                ):
+                    action = provider.action_fetch_models()
+                self.assertEqual(action['params']['type'], 'success')
+                self.assertTrue(
+                    self.env['muk_ai.model'].search(
+                        [
+                            ('provider_id', '=', provider.id),
+                            ('technical_name', '=', 'm1'),
+                        ]
+                    )
+                )

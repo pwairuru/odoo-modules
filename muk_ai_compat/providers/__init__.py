@@ -2,7 +2,20 @@ from __future__ import annotations
 
 from odoo.addons.muk_ai.providers import REGISTRY
 
-from .compat import OpenAICompatProvider
+from .compat import (
+    DeepInfraProvider,
+    OpencodeProvider,
+    OpenAICompatProvider,
+    OpenRouterProvider,
+    SiliconFlowProvider,
+)
 
 
-REGISTRY[OpenAICompatProvider.name] = OpenAICompatProvider
+for _provider in (
+    OpenAICompatProvider,
+    OpenRouterProvider,
+    OpencodeProvider,
+    DeepInfraProvider,
+    SiliconFlowProvider,
+):
+    REGISTRY[_provider.name] = _provider

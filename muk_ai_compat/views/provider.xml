@@ -13,7 +13,7 @@
 					type="object"
 					string="Fetch Models"
 					class="btn-secondary"
-					invisible="name != 'openai_compat'"
+					invisible="name not in ('openai_compat', 'openrouter', 'opencode', 'deepinfra', 'siliconflow')"
 				/>
 				<button
 					name="action_fetch_models"
@@ -22,13 +22,13 @@
 					context="{'fetch_replace': True}"
 					help="Fetch the catalogue and archive the models the endpoint no longer lists."
 					class="btn-secondary"
-					invisible="name != 'openai_compat'"
+					invisible="name not in ('openai_compat', 'openrouter', 'opencode', 'deepinfra', 'siliconflow')"
 				/>
 			</xpath>
 			<xpath expr="//field[@name='api_url']" position="after">
 				<field
 					name="api_headers"
-					invisible="name != 'openai_compat'"
+					invisible="name not in ('openai_compat', 'openrouter', 'opencode', 'deepinfra', 'siliconflow')"
 					placeholder="{&#10;&quot;HTTP-Referer&quot;: &quot;https://example.com&quot;,&#10;&quot;X-Title&quot;: &quot;AI Assistant&quot;&#10;}"
 				/>
 			</xpath>

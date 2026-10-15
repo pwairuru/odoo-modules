@@ -98,7 +98,9 @@ class AIProvider(models.Model):
         longer listed are archived instead of kept.
         """
         self.ensure_one()
-        if self.name != 'openai_compat':
+        from odoo.addons.muk_ai_compat.providers.compat import OpenAICompatProvider
+
+        if not isinstance(self._get_client(), OpenAICompatProvider):
             raise UserError(
                 self.env._(
                     'Model fetch is only available on OpenAI Compatible providers.'

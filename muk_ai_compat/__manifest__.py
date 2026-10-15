@@ -12,7 +12,7 @@
         on OpenRouter, ``x-opencode-session`` on opencode). The API key stays
         optional, so keyless local endpoints work too.
     """,
-    'version': '20.0.1.0.0',
+    'version': '20.0.1.0.1',
     'category': 'Productivity',
     'license': 'LGPL-3',
     'author': 'MuK IT',
